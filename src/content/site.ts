@@ -10,8 +10,8 @@ export const site = {
   role: "Mathematician",
   tagline:
     "Mathematician who builds — AI, topology, and production-grade software.",
-  // Update to the final domain before publishing (used in metadata / SEO / JSON-LD).
-  url: "https://danielreinoso.dev",
+  // Update to a custom domain if you get one (used in metadata / SEO / JSON-LD).
+  url: "https://portafolio-qwik-mu.vercel.app",
   locale: "en_US",
   email: "cesardanielrrch@gmail.com",
   location: "Ecuador",
