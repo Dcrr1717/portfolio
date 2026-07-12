@@ -181,6 +181,32 @@ function Wave() {
   );
 }
 
+function Stats() {
+  const bars = [20, 38, 60, 78, 88, 80, 62, 40, 22];
+  return (
+    <>
+      <line x1="18" y1="102" x2="188" y2="102" {...S} opacity="0.5" />
+      {bars.map((h, i) => (
+        <rect key={i} x={22 + i * 18} y={102 - h} width="12" height={h} fill="currentColor" opacity="0.08" />
+      ))}
+      <path d="M22 92 Q60 8 100 8 T178 92" {...S} class="text-accent" opacity="0.8" />
+      <circle cx="100" cy="8" r="3.5" class="fill-accent" />
+    </>
+  );
+}
+
+function Vision() {
+  return (
+    <>
+      <rect x="30" y="18" width="140" height="84" rx="6" {...S} opacity="0.5" />
+      <rect x="72" y="40" width="56" height="44" {...S} class="text-accent" stroke-width="1.5" />
+      <path d="M72 50 v-10 h10 M128 50 v-10 h-10 M72 74 v10 h10 M128 74 v10 h-10" {...S} class="text-accent" />
+      <circle cx="100" cy="62" r="10" {...S} />
+      <circle cx="100" cy="62" r="3" class="fill-accent" />
+    </>
+  );
+}
+
 export const Motif = component$<{ motif: Project["motif"]; class?: string }>(
   ({ motif, class: c }) => {
     return (
@@ -195,6 +221,8 @@ export const Motif = component$<{ motif: Project["motif"]; class?: string }>(
         {motif === "logic" && <Logic />}
         {motif === "spectral" && <Spectral />}
         {motif === "wave" && <Wave />}
+        {motif === "stats" && <Stats />}
+        {motif === "vision" && <Vision />}
       </svg>
     );
   },

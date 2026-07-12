@@ -4,7 +4,7 @@ import { ProjectCard } from "../ui/ProjectCard";
 import { SectionHeader } from "../ui/SectionHeader";
 import { Reveal } from "../ui/Reveal";
 
-const WIDE = [0, 5];
+const WIDE = [0, 5, 10];
 
 export const Projects = component$(() => {
   return (
@@ -12,8 +12,8 @@ export const Projects = component$(() => {
       <SectionHeader
         index="01"
         label="Projects"
-        title="Nine projects, one thread: rigor, applied."
-        lede="From pure mathematics and topological data analysis to AI research and shipped web apps — each project solves a real problem with the right tool."
+        title="Eleven projects, one thread: rigor, applied."
+        lede="From pure mathematics and topological data analysis to AI research, statistics in R and shipped web apps — each project solves a real problem with the right tool."
       />
 
       <div class="grid grid-cols-1 gap-4 md:grid-cols-2">

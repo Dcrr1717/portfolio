@@ -12,14 +12,14 @@ export type ProjectLink = {
 
 export type Motif =
   | "chess" | "cosmos" | "network" | "molecule" | "brain" | "bot"
-  | "topology" | "logic" | "spectral" | "wave";
+  | "topology" | "logic" | "spectral" | "wave" | "stats" | "vision";
 
 export type Project = {
   slug: string;
   index: string;
   title: string;
   category: string;
-  pillar: "AI / Machine Learning" | "Topological Data Analysis" | "Pure Mathematics" | "Developer" | "Teaching";
+  pillar: "AI / Machine Learning" | "Topological Data Analysis" | "Pure Mathematics" | "Developer" | "Teaching" | "Statistics / R";
   year: string;
   role: string;
   motif: Motif;
@@ -343,6 +343,72 @@ export const projects: Project[] = [
     ],
     featured: true,
   },
+  {
+    slug: "statistical-modeling-r",
+    index: "10",
+    title: "Statistical Modeling & Data Mining in R",
+    category: "Statistics · R · Data Mining",
+    pillar: "Statistics / R",
+    year: "2026",
+    role: "M.Sc. in Statistics",
+    motif: "stats",
+    oneLiner:
+      "A graduate body of statistics in R — modeling, data mining, geospatial analysis, and interactive Shiny apps.",
+    summary:
+      "The applied core of my M.Sc. in Statistics: statistical modeling, data mining and deep learning in R — spanning geospatial analysis, exploratory data analysis and interactive Shiny dashboards, with data drawn from both SQL and MongoDB.",
+    problem:
+      "Real statistical practice is broad: from a clean regression to a full data-mining pipeline to an app a non-statistician can actually use. This is that breadth, done rigorously.",
+    contributions: [
+      "Statistical modeling and data mining across a full graduate curriculum in R.",
+      "Interactive R Shiny applications (including a recurrent-network demo).",
+      "Geospatial analysis and thorough exploratory data analysis.",
+      "Data access from both SQL (SQLite) and NoSQL (MongoDB).",
+    ],
+    tech: [
+      { group: "Language", items: ["R", "tidyverse", "ggplot2"] },
+      { group: "Apps & Data", items: ["R Shiny", "SQL / SQLite", "MongoDB"] },
+      { group: "Methods", items: ["Regression", "Data mining", "Geospatial"] },
+    ],
+    metrics: [
+      { label: "Language", value: "R" },
+      { label: "Apps", value: "Shiny" },
+      { label: "Data", value: "SQL · NoSQL" },
+    ],
+    featured: true,
+  },
+  {
+    slug: "medical-imaging-vision-transformers",
+    index: "11",
+    title: "Medical Imaging with Vision Transformers",
+    category: "Computer Vision · Deep Learning",
+    pillar: "AI / Machine Learning",
+    year: "2026",
+    role: "Modeling & experiments",
+    motif: "vision",
+    oneLiner:
+      "Fine-tuning Vision Transformers to detect pneumonia from chest imaging, with an end-to-end, explainable CV pipeline.",
+    summary:
+      "A computer-vision project fine-tuning Vision Transformers (ViT) for pneumonia detection from chest imaging, alongside object-detection experiments (YOLOv5), with a dataset-to-inference pipeline and explainability built in.",
+    problem:
+      "Medical imaging demands models that are both accurate and honest about what they see. The goal was a careful transfer-learning pipeline — from dataset to explainable inference.",
+    contributions: [
+      "Fine-tuned a Vision Transformer (ViT) for pneumonia classification from chest imaging.",
+      "Object-detection experiments with YOLOv5 (including pose).",
+      "Dataset builder → inference pipeline → explainability (Grad-CAM).",
+      "Reproducible, staged experiment structure with an ETL step.",
+    ],
+    tech: [
+      { group: "Deep Learning", items: ["PyTorch", "Vision Transformer", "YOLOv5"] },
+      { group: "Explainability", items: ["Grad-CAM"] },
+      { group: "Pipeline", items: ["ETL", "SQLite / Excel"] },
+    ],
+    metrics: [
+      { label: "Model", value: "ViT" },
+      { label: "Task", value: "Pneumonia" },
+      { label: "XAI", value: "Grad-CAM" },
+    ],
+    featured: true,
+  },
 ];
 
 export type SecondaryProject = {
@@ -371,8 +437,21 @@ export const skills: SkillGroup[] = [
       "scikit-learn",
       "CNN / MLP",
       "Graph Neural Networks",
+      "Vision Transformers · YOLO",
       "Persistent homology (ripser / GUDHI)",
-      "LLMs (OpenAI · Anthropic · Llama · Hugging Face)",
+      "LLMs (OpenAI · Anthropic · Llama · HF)",
+    ],
+  },
+  {
+    title: "Statistics & R",
+    items: [
+      "R",
+      "R Shiny",
+      "tidyverse",
+      "ggplot2",
+      "Data mining",
+      "Geospatial analysis",
+      "statsmodels",
     ],
   },
   {
@@ -387,8 +466,8 @@ export const skills: SkillGroup[] = [
     ],
   },
   {
-    title: "Data Science & Statistics",
-    items: ["pandas", "NumPy", "SciPy", "statsmodels", "networkx", "Plotly / Dash", "R"],
+    title: "Data & Databases",
+    items: ["SQL / SQLite", "MongoDB (NoSQL)", "ETL pipelines", "pandas", "NumPy", "PyArrow"],
   },
   {
     title: "Frontend & Web",
