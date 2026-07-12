@@ -1,0 +1,251 @@
+@import "tailwindcss";
+
+/* Dark mode driven by the `dark` class on <html> (set by inline script in root) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------- Design tokens: Swiss Modernism 2.0 (ink + Swiss vermilion) ---------- */
+:root {
+  color-scheme: light;
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --surface-2: #f4f4f5;
+  --ink: #0a0a0b;
+  --ink-secondary: #52525b;
+  --ink-muted: #71717a;
+  --line: #e5e5e8;
+  --line-strong: #d4d4d8;
+  --accent: #e5431e;
+  --accent-ink: #c1300f;
+  --shadow-color: 220 40% 12%;
+}
+
+:root.dark {
+  color-scheme: dark;
+  --bg: #09090b;
+  --surface: #111113;
+  --surface-2: #17171a;
+  --ink: #fafafa;
+  --ink-secondary: #a1a1aa;
+  --ink-muted: #71717a;
+  --line: #27272a;
+  --line-strong: #3f3f46;
+  --accent: #ff5a3c;
+  --accent-ink: #ff8266;
+  --shadow-color: 0 0% 0%;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-secondary: var(--ink-secondary);
+  --color-ink-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+
+  --font-display: "Archivo Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Space Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+
+  --shadow-ambient: 0 1px 2px hsl(var(--shadow-color) / 0.04),
+    0 8px 24px -12px hsl(var(--shadow-color) / 0.1);
+  --shadow-lift: 0 2px 4px hsl(var(--shadow-color) / 0.05),
+    0 24px 48px -20px hsl(var(--shadow-color) / 0.18);
+  --ease-swiss: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* ---------- Base ---------- */
+* {
+  border-color: var(--color-line);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3 {
+  text-wrap: balance;
+}
+p {
+  text-wrap: pretty;
+}
+
+a, button, [role="button"] {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Swiss hairline grid motif */
+.grid-lines {
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 72px 72px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
+}
+
+/* ---------- Scroll-reveal via native CSS scroll-driven animations ----------
+   Zero JS. The hidden->shown animation is driven by the element's own position
+   in the viewport (animation-timeline: view()). Gated by:
+   - html.reveal-js  → only when JS is present (set pre-paint by the head script)
+   - @supports (animation-timeline)  → browsers without support show content as-is
+   So content is NEVER permanently hidden (no-JS or Safari → fully visible). */
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+@supports (animation-timeline: view()) {
+  html.reveal-js .reveal {
+    animation: reveal-in both linear;
+    animation-timeline: view();
+    animation-range: entry 0% entry 65%;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html.reveal-js .reveal {
+      animation: none;
+    }
+  }
+}
+
+/* Draw-in animation for hero graph edges */
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes nodein {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes edgein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.35;
+  }
+}
+.gedge {
+  opacity: 0.35;
+  animation: edgein 1s var(--ease-swiss) both;
+}
+.gnode {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: nodein 0.6s var(--ease-swiss) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .gedge,
+  .gnode {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* Mobile menu overlay + staggered links (pure CSS) */
+.menu-overlay {
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-swiss);
+}
+.menu-overlay.is-open {
+  pointer-events: auto;
+  opacity: 1;
+}
+.menu-link {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.5s var(--ease-swiss),
+    transform 0.5s var(--ease-swiss);
+}
+.menu-overlay.is-open .menu-link {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .menu-link {
+    transform: none;
+    transition: opacity 0.3s ease;
+  }
+}
+
+/* Animated link underline */
+.link-underline {
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1.5px;
+  transition: background-size 0.4s var(--ease-swiss);
+}
+.link-underline:hover {
+  background-size: 100% 1.5px;
+}
+
+@media (pointer: fine) {
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--line-strong);
+    border-radius: 999px;
+    border: 3px solid var(--bg);
+  }
+}
