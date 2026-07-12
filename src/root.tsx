@@ -9,7 +9,7 @@ import "@fontsource-variable/jetbrains-mono";
 
 // Corre antes del paint: fija `dark` (sin flash de tema) y `reveal-js`
 // (para que el estado oculto de los reveals solo aplique si hay JS).
-const themeScript = `(function(){var r=document.documentElement;r.classList.add('reveal-js');try{var t=localStorage.getItem('theme');var d=t?t==='dark':true;r.classList.toggle('dark',d);}catch(e){r.classList.add('dark');}})();`;
+const themeScript = `(function(){var r=document.documentElement;r.classList.add('reveal-js');try{var t=localStorage.getItem('theme');var d=t?t==='dark':true;r.classList.toggle('dark',d);var l=localStorage.getItem('locale');if(l)r.setAttribute('lang',l);}catch(e){r.classList.add('dark');}})();`;
 
 export default component$(() => {
   return (

@@ -1,32 +1,32 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, useContext } from "@builder.io/qwik";
 import { Reveal } from "../ui/Reveal";
 import { site } from "~/content/site";
 import { ArrowUpRight, Mail, GitHub } from "../icons/icons";
+import { LocaleContext, ui, tr } from "~/content/i18n";
 
 export const Contact = component$(() => {
+  const locale = useContext(LocaleContext);
+  const l = locale.value;
   return (
     <section id="contact" class="mx-auto max-w-6xl scroll-mt-24 px-4 py-24 sm:px-6 md:py-40">
       <Reveal>
         <div class="mb-5 flex items-center gap-3">
           <span class="font-mono text-xs text-accent-ink tabular">05</span>
           <span class="h-px w-8 bg-line-strong" />
-          <span class="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-muted">
-            Contact
-          </span>
+          <span class="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-muted">{tr(ui.contact.label, l)}</span>
         </div>
       </Reveal>
 
       <Reveal delay={60}>
         <h2 class="max-w-4xl font-display text-[clamp(2.5rem,6vw,4.5rem)] font-semibold leading-[0.98] tracking-tight text-ink">
-          Let's work <span class="text-accent">together</span>.
+          {tr(ui.contact.titleA, l)}
+          <span class="text-accent">{tr(ui.contact.titleB, l)}</span>
+          {tr(ui.contact.titleC, l)}
         </h2>
       </Reveal>
 
       <Reveal delay={120}>
-        <p class="mt-6 max-w-xl text-lg leading-relaxed text-ink-secondary">
-          Open to research collaborations, doctoral opportunities, and projects at the
-          intersection of mathematics, AI and software.
-        </p>
+        <p class="mt-6 max-w-xl text-lg leading-relaxed text-ink-secondary">{tr(ui.contact.lede, l)}</p>
       </Reveal>
 
       <Reveal delay={200}>
