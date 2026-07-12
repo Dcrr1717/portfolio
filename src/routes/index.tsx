@@ -2,6 +2,7 @@ import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
 import { Hero } from "~/components/sections/Hero";
 import { Projects } from "~/components/sections/Projects";
+import { Gallery } from "~/components/sections/Gallery";
 import { Skills } from "~/components/sections/Skills";
 import { Research } from "~/components/sections/Research";
 import { About } from "~/components/sections/About";
@@ -13,6 +14,7 @@ export default component$(() => {
     <>
       <Hero />
       <Projects />
+      <Gallery />
       <Skills />
       <Research />
       <About />

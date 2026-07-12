@@ -60,6 +60,20 @@ export const ui = {
     moreWork: { en: "More work", es: "Otros trabajos", fr: "Autres travaux" },
     viewProject: { en: "View project", es: "Ver proyecto", fr: "Voir le projet" },
   },
+  gallery: {
+    label: { en: "Visuals", es: "Visuales", fr: "Visuels" },
+    title: { en: "Selected outputs from the work.", es: "Resultados seleccionados del trabajo.", fr: "Résultats choisis du travail." },
+    lede: {
+      en: "Real figures and interfaces — attractors, graph networks, simulations, and shipped UI.",
+      es: "Figuras e interfaces reales — atractores, redes en grafo, simulaciones e interfaz desplegada.",
+      fr: "Figures et interfaces réelles — attracteurs, réseaux en graphe, simulations et interface déployée.",
+    },
+    cChess: { en: "Engine-backed chess platform", es: "Plataforma de ajedrez con motor", fr: "Plateforme d'échecs avec moteur" },
+    cGnn: { en: "Graph neural network", es: "Red neuronal en grafo", fr: "Réseau neuronal sur graphe" },
+    cLorenz: { en: "Lorenz attractor", es: "Atractor de Lorenz", fr: "Attracteur de Lorenz" },
+    cMonte: { en: "Monte Carlo simulation", es: "Simulación de Monte Carlo", fr: "Simulation de Monte-Carlo" },
+    cBz: { en: "Belousov–Zhabotinsky reaction", es: "Reacción de Belousov–Zhabotinsky", fr: "Réaction de Belooussov–Jabotinski" },
+  },
   skills: {
     label: { en: "Skills", es: "Habilidades", fr: "Compétences" },
     title: { en: "The stack I use, proven in real code.", es: "El stack que uso, demostrado en código real.", fr: "Les technologies que j'utilise, prouvées dans du vrai code." },
